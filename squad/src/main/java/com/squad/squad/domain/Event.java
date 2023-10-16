@@ -11,7 +11,7 @@ public class Event {
     private String name;
     private Date date;
     private Time hour;
-    private String lieu;
+    private String place;
     private String description;
     @ManyToOne
     private Category category;
@@ -21,11 +21,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String lieu, String description) {
+    public Event(String name, Date date, Time hour, String place, String description) {
         this.name = name;
         this.date = date;
         this.hour = hour;
-        this.lieu = lieu;
+        this.place = place;
         this.description = description;
     }
 
@@ -61,12 +61,12 @@ public class Event {
         this.hour = hour;
     }
 
-    public String getLieu() {
-        return lieu;
+    public String getPlace() {
+        return place;
     }
 
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getDescription() {

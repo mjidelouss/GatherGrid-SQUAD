@@ -1,5 +1,11 @@
 package com.squad.squad.service;
 
-public class EventService {
+import com.squad.squad.repository.EventRepository;
 
+public class EventService {
+    private final EventRepository eventRepository;
+
+    public EventService() {
+        eventRepository = new EventRepository();
+    }
 }

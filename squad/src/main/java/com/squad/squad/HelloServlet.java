@@ -1,6 +1,8 @@
 package com.squad.squad;
 
 import java.io.*;
+
+import com.squad.squad.service.EventService;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -9,6 +11,7 @@ public class HelloServlet extends HttpServlet {
     private String message;
 
     public void init() {
+        EventService eventService = new EventService();
         message = "Hello World!";
     }
 
