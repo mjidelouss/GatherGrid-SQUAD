@@ -51,7 +51,6 @@ public class EventRepository {
         entityManager.close();
         return event;
     }
-
     public void deleteEvent(Long eventId) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
