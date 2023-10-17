@@ -3,7 +3,9 @@ import com.squad.squad.domain.Event;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
+import java.util.Date;
 import java.util.List;
 
 public class EventRepository {
@@ -14,16 +16,30 @@ public class EventRepository {
 
     public Event getEvent(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Event event = entityManager.find(Event.class, id);
-        entityManager.close();
-        return event;
+        return entityManager.find(Event.class, id);
     }
 
     public List<Event> getAllEvents() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Event> events = entityManager.createQuery("SELECT e FROM Event e, Event.class").getResultList();
-        entityManager.close();
-        return events;
+         return entityManager.createQuery("SELECT e FROM Event e, Event.class").getResultList();
+    }
+
+    public List<Event> searchEvents(String name, Date date, String hour, String place, String jpql) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        TypedQuery<Event> query = entityManager.createQuery(jpql, Event.class);
+        if (name != null && !name.isEmpty()) {
+            query.setParameter("name", "%" + name + "%");
+        }
+        if (date != null) {
+            query.setParameter("date", date);
+        }
+        if (hour != null && !hour.isEmpty()) {
+            query.setParameter("hour", hour);
+        }
+        if (place != null && !place.isEmpty()) {
+            query.setParameter("place", "%" + place + "%");
+        }
+        return query.getResultList();
     }
     public Event saveEvent(Event event) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();

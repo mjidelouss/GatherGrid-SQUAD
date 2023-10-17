@@ -84,4 +84,17 @@ public class Event {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", hour=" + hour +
+                ", place='" + place + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", commentaires=" + commentaires +
+                '}';
+    }
 }
