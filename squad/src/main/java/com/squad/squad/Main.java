@@ -9,11 +9,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        EventService eventService = new EventService();
         //Event event = new Event("Test", new Date(), Time.valueOf("12:21:21"), "Test", "Test 2023");
         //Event newEvent = eventService.saveEvent(event);
         //System.out.println(newEvent);
-        List<Event> events = eventService.searchEvents("Devox", null, null, null);
-        events.stream().forEach(event -> System.out.println(event));
+        //List<Event> events = eventService.searchEvents("Devox", null, null, null);
+        //events.stream().forEach(event -> System.out.println(event));
     }
 }

@@ -16,17 +16,31 @@ public class Event {
     @ManyToOne
     private Category category;
     @OneToMany
-    private List<Comment> commentaires;
+    private List<Comment> comments;
+
+    @OneToOne
+    private User organiser;
 
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String place, String description) {
+    public Event(String name, Date date, Time hour, String place, String description, Category category, List<Comment> comments, User organiser) {
         this.name = name;
         this.date = date;
         this.hour = hour;
         this.place = place;
         this.description = description;
+        this.category = category;
+        this.comments = comments;
+        this.organiser = organiser;
+    }
+
+    public User getOrganiser() {
+        return organiser;
+    }
+
+    public void setOrganiser(User organiser) {
+        this.organiser = organiser;
     }
 
     public Long getId() {
@@ -85,6 +99,14 @@ public class Event {
         this.category = category;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -94,7 +116,7 @@ public class Event {
                 ", place='" + place + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
-                ", commentaires=" + commentaires +
+                ", commentaires=" + comments +
                 '}';
     }
 }

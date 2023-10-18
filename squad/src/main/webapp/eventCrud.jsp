@@ -1,18 +1,18 @@
+<%@ page import="com.squad.squad.domain.Event" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <title>Manage Events</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/eventCrud.css">
+    <link rel="stylesheet" href="src/css/eventCrud.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/eventCrud.js" type="module"></script>
+    <script src="src/js/eventCrud.js" type="module"></script>
 </head>
 <body>
 <div class="container">
@@ -47,6 +47,11 @@
             </tr>
             </thead>
             <tbody>
+            <%
+                List<Event> events = (List<Event>) request.getAttribute("events");
+                if (events != null && !events.isEmpty()) {
+                    for (Event event : events) {
+            %>
             <tr>
                 <td>
        <span class="custom-checkbox">
@@ -54,16 +59,26 @@
         <label for="checkbox1"></label>
        </span>
                 </td>
-                <td>Devox</td>
-                <td>Hotel Meg, Taghazout</td>
-                <td>15 Oct 2023</td>
-                <td>2:00 PM +01</td>
-                <td>DEV</td>
-                <td>Mark Wallberg</td>
+                <td><%= event.getName() %></td>
+                <td><%= event.getPlace() %></td>
+                <td><%= event.getDate() %></td>
+                <td><%= event.getHour() %></td>
+                <td><%= event.getCategory().getName() %></td>
+                <td><%= event.getOrganiser().getFirstName() %></td>
                 <td>
                     <a href="#editEventModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                     <a href="#deleteEventModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </td>
+                    <%
+                }
+            } else {
+        %>
+            <tr>
+                <td colspan="4" class="">No Events found</td>
+            </tr>
+            <%
+                }
+            %>
             </tr>
             </tbody>
         </table>
@@ -81,20 +96,32 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Event Name</label>
                         <input type="text" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required>
+                        <label>Event Date</label>
+                        <input type="date" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
+                        <label>Event Place</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Time</label>
+                        <input type="time" class="form-control" required>
+                    </div>
+                        <div class="form-group">
+                            <strong class="fs-5">Category:</strong>
+                            <select class="form-control" name="category_id" required>
+                                <option disabled selected> Select Category</option>
+                                <option value="">{{ $category->category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    <div class="form-group">
+                        <label>Event Description</label>
                         <textarea class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -116,20 +143,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Event Name</label>
                         <input type="text" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required>
+                        <label>Event Date</label>
+                        <input type="date" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
+                        <label>Event Place</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Time</label>
+                        <input type="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Description</label>
                         <textarea class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">

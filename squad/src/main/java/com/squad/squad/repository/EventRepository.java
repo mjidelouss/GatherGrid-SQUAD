@@ -9,24 +9,21 @@ import java.util.Date;
 import java.util.List;
 
 public class EventRepository {
-    private final EntityManagerFactory entityManagerFactory;
-    public EventRepository(){
-        entityManagerFactory= Persistence.createEntityManagerFactory("default");
+    private final EntityManager em;
+    public EventRepository(EntityManager em){
+        this.em = em;
     }
 
     public Event getEvent(Long id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        return entityManager.find(Event.class, id);
+        return em.find(Event.class, id);
     }
 
     public List<Event> getAllEvents() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-         return entityManager.createQuery("SELECT e FROM Event e, Event.class").getResultList();
+         return em.createQuery("SELECT e FROM Event e", Event.class).getResultList();
     }
 
     public List<Event> searchEvents(String name, Date date, String hour, String place, String jpql) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<Event> query = entityManager.createQuery(jpql, Event.class);
+        TypedQuery<Event> query = em.createQuery(jpql, Event.class);
         if (name != null && !name.isEmpty()) {
             query.setParameter("name", "%" + name + "%");
         }
@@ -42,17 +39,15 @@ public class EventRepository {
         return query.getResultList();
     }
     public Event saveEvent(Event event) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(event);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        em.getTransaction().begin();
+        em.persist(event);
+        em.getTransaction().commit();
+        em.close();
         return event;
     }
 
     public Event updateEvent(Event updatedEvent, Long eventId) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
         Event event = getEvent(eventId);
         if (event != null) {
             event.setName(updatedEvent.getName());
@@ -61,20 +56,22 @@ public class EventRepository {
             event.setDate(updatedEvent.getDate());
             event.setHour(updatedEvent.getHour());
             event.setDescription(updatedEvent.getDescription());
-            entityManager.merge(event);
+            event.setCategory(updatedEvent.getCategory());
+            event.setComments(updatedEvent.getComments());
+            event.setOrganiser(updatedEvent.getOrganiser());
+            em.merge(event);
         }
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        em.getTransaction().commit();
+        em.close();
         return event;
     }
     public void deleteEvent(Long eventId) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
         Event event = getEvent(eventId);
         if (event != null) {
-            entityManager.remove(event);
+            em.remove(event);
         }
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        em.getTransaction().commit();
+        em.close();
     }
 }

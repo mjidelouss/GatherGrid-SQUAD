@@ -2,6 +2,7 @@ package com.squad.squad.service;
 
 import com.squad.squad.domain.Event;
 import com.squad.squad.repository.EventRepository;
+import jakarta.persistence.EntityManager;
 
 import java.util.Date;
 import java.util.List;
@@ -9,8 +10,8 @@ import java.util.List;
 public class EventService {
     private final EventRepository eventRepository;
 
-    public EventService() {
-        eventRepository = new EventRepository();
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
     }
 
     public Event saveEvent(Event event) {
