@@ -1,4 +1,4 @@
-package com.squad.squad;
+package com.squad.squad.controller;
 
 import java.io.*;
 import java.sql.Time;

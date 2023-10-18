@@ -18,6 +18,9 @@ public class EventRepository {
         return em.find(Event.class, id);
     }
 
+    public List<Event> getEventsOfOrganiser(Long id) {
+        return em.createQuery("SELECT e FROM Event e WHERE e.organiser.id = id", Event.class).getResultList();
+    }
     public List<Event> getAllEvents() {
          return em.createQuery("SELECT e FROM Event e", Event.class).getResultList();
     }
