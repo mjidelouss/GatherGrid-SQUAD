@@ -2,7 +2,6 @@ package com.squad.squad.service;
 
 import com.squad.squad.domain.Event;
 import com.squad.squad.repository.EventRepository;
-import jakarta.persistence.EntityManager;
 
 import java.util.Date;
 import java.util.List;

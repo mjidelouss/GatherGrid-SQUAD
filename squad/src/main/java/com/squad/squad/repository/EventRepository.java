@@ -45,7 +45,6 @@ public class EventRepository {
         em.getTransaction().begin();
         em.persist(event);
         em.getTransaction().commit();
-        em.close();
         return event;
     }
 
@@ -60,12 +59,10 @@ public class EventRepository {
             event.setHour(updatedEvent.getHour());
             event.setDescription(updatedEvent.getDescription());
             event.setCategory(updatedEvent.getCategory());
-            event.setComments(updatedEvent.getComments());
             event.setOrganiser(updatedEvent.getOrganiser());
             em.merge(event);
         }
         em.getTransaction().commit();
-        em.close();
         return event;
     }
     public void deleteEvent(Long eventId) {
@@ -75,6 +72,5 @@ public class EventRepository {
             em.remove(event);
         }
         em.getTransaction().commit();
-        em.close();
     }
 }

@@ -1,5 +1,6 @@
 <%@ page import="com.squad.squad.domain.Event" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.squad.squad.domain.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -67,7 +68,7 @@
                 <td><%= event.getOrganiser().getFirstName() %></td>
                 <td>
                     <a href="#editEventModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                    <a href="#deleteEventModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    <a href="#deleteEventModal" class="delete" data-toggle="modal" onclick="setEventId(<%= event.getId() %>);"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </td>
                     <%
                 }
@@ -85,43 +86,51 @@
     </div>
 </div>
 
-<!-- Edit Modal HTML -->
+<!-- Add Modal HTML -->
 <div id="addEventModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="event-servlet" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Event Name</label>
-                        <input type="text" class="form-control" required>
+                        <label for="eventName">Event Name</label>
+                        <input type="text" id="eventName" name="eventName" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Event Date</label>
-                        <input type="date" class="form-control" required>
+                        <label for="eventDate">Event Date</label>
+                        <input type="date" id="eventDate" name="eventDate" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Event Place</label>
-                        <input type="text" class="form-control" required>
+                        <label for="eventPlace">Event Place</label>
+                        <input type="text" id="eventPlace" name="eventPlace" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Event Time</label>
-                        <input type="time" class="form-control" required>
+                        <label for="eventTime">Event Time</label>
+                        <input type="time" id="eventTime" name="eventTime" class="form-control" required>
                     </div>
-                        <div class="form-group">
-                            <strong class="fs-5">Category:</strong>
-                            <select class="form-control" name="category_id" required>
-                                <option disabled selected> Select Category</option>
-                                <option value="">{{ $category->category }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                     <div class="form-group">
-                        <label>Event Description</label>
-                        <textarea class="form-control" required></textarea>
+                        <label class="">Category:</label>
+                        <select id="category" name="eventCategory" class="form-control" required>
+                            <option disabled selected> Select Category</option>
+                            <%
+                                List<Category> categories = (List<Category>) request.getAttribute("categories");
+                                if (categories != null && !categories.isEmpty()) {
+                                    for (Category category : categories) {
+                            %>
+                            <option value="<%= category.getId() %>"><%= category.getName() %></option>
+                            <%
+                                    }
+                                }
+                            %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Event Description</label>
+                        <textarea id="eventDescription" name="eventDescription" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -132,6 +141,7 @@
         </div>
     </div>
 </div>
+
 <!-- Edit Modal HTML -->
 <div id="editEventModal" class="modal fade">
     <div class="modal-dialog">
@@ -159,6 +169,19 @@
                         <input type="time" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label class="">Category:</label>
+                        <select class="form-control" name="category_id" required>
+                            <option disabled selected> Select Category</option>
+                            <%
+                                for (Category category : categories) {
+                            %>
+                            <option value="<%= category.getName() %>"><%= category.getName() %></option>
+                            <%
+                                }
+                            %>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Event Description</label>
                         <textarea class="form-control" required></textarea>
                     </div>
@@ -175,7 +198,7 @@
 <div id="deleteEventModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="event-servlet" id="deleteEventForm" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">Delete Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -186,7 +209,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-danger" value="Delete">
+                    <input type="submit" name="" class="btn btn-danger" value="Delete">
                 </div>
             </form>
         </div>

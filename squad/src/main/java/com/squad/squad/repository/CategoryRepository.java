@@ -1,6 +1,7 @@
 package com.squad.squad.repository;
 
 import com.squad.squad.domain.Category;
+import com.squad.squad.domain.Event;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -13,5 +14,9 @@ public class CategoryRepository {
 
     public List<Category> getAllCategories() {
         return em.createQuery("SELECT c FROM Category c", Category.class).getResultList();
+    }
+
+    public Category getCategoryById(Long id) {
+        return em.find(Category.class, id);
     }
 }

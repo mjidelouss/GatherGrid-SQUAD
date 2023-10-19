@@ -17,21 +17,19 @@ public class Event {
     private Category category;
     @OneToMany
     private List<Comment> comments;
-
-    @OneToOne
+    @ManyToOne
     private User organiser;
 
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String place, String description, Category category, List<Comment> comments, User organiser) {
+    public Event(String name, Date date, Time hour, String place, String description, Category category, User organiser) {
         this.name = name;
         this.date = date;
         this.hour = hour;
         this.place = place;
         this.description = description;
         this.category = category;
-        this.comments = comments;
         this.organiser = organiser;
     }
 
