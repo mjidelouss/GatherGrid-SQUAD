@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="squad:war">
+    <output-path>$PROJECT_DIR$/squad/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>squad</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="squad-1.0.war">
+      <element id="artifact" artifact-name="squad:war exploded" />
+    </root>
+  </artifact>
+</component>

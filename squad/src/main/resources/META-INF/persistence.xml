@@ -5,9 +5,11 @@
              version="3.0">
   <persistence-unit name="default">
     <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-    <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gathergrid"/>
+    <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gatherGrid?createDatabaseIfNotExist=true"/>
     <property name="jakarta.persistence.jdbc.user" value="root"/>
     <property name="jakarta.persistence.jdbc.password" value=""/>
     <property name="hibernate.hbm2ddl.auto" value="update"/>
+    <property name="hibernate.show_sql" value="true"/>
+    <property name="hibernate.format_sql" value="true"/>
   </persistence-unit>
 </persistence>
