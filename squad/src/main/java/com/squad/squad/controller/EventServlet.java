@@ -25,7 +25,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "eventServlet", value = "/event-servlet")
+@WebServlet(name = "eventServlet", value = "/event-servlet/*")
 public class EventServlet extends HttpServlet {
     private EntityManager em = EntityManagerUtil.getEntityManager();
     private EventRepository eventRepository = new EventRepository(em);
@@ -46,6 +46,29 @@ public class EventServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getRequestURL().toString();
+        if(path.contains("addEvent")) {
+            addEvent(req, resp);
+        }
+        else if(path.contains("deleteEvent")) {
+            doDelete(req, resp);
+        }
+    }
+
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long eventId = Long.parseLong(req.getParameter("eventId"));
+        eventService.deleteEvent(eventId);
+        resp.sendRedirect(req.getContextPath()+"/event-servlet");
+
+    }
+
+    protected void addEvent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CategoryRepository categoryRepository = new CategoryRepository(em);
         CategoryService categoryService = new CategoryService(categoryRepository);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -66,17 +89,7 @@ public class EventServlet extends HttpServlet {
         organiser.setId((long)1);
         Event event = new Event(name, date, time, place, description, category, organiser);
         eventService.saveEvent(event);
-        resp.sendRedirect("event-servlet");
-    }
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long eventId = Long.parseLong(req.getParameter(""));
-        eventService.deleteEvent(eventId);
-        resp.sendRedirect("event-servlet");
+        resp.sendRedirect(req.getContextPath()+"/event-servlet");
     }
     @Override
     public void destroy() {

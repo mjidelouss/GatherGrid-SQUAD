@@ -90,7 +90,7 @@
 <div id="addEventModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="event-servlet" method="POST">
+            <form action="event-servlet/addEvent" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -198,7 +198,7 @@
 <div id="deleteEventModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="event-servlet" id="deleteEventForm" method="POST">
+            <form action="event-servlet/deleteEvent" id="deleteEventForm" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">Delete Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -211,9 +211,15 @@
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="submit" name="" class="btn btn-danger" value="Delete">
                 </div>
+                <input type="hidden" id="eventId" name="eventId">
             </form>
         </div>
     </div>
 </div>
+<script>
+    function setEventId(eventId) {
+        document.getElementById('eventId').value = eventId;
+    }
+</script>
 </body>
 </html>

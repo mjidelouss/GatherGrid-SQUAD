@@ -28,7 +28,4 @@ $(document).ready(function()
             $("#selectAll").prop("checked", false);
         }
     });
-    function setEventId(eventId) {
-        document.getElementById('eventId').value = eventId;
-    }
 });
