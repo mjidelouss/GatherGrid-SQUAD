@@ -67,7 +67,7 @@
                 <td><%= event.getCategory().getName() %></td>
                 <td><%= event.getOrganiser().getFirstName() %></td>
                 <td>
-                    <a href="#editEventModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a href="#editEventModal" class="edit" data-toggle="modal" onclick="editEvent('<%= event.getId() %>', '<%= event.getName() %>', '<%= event.getDate() %>', '<%= event.getHour() %>', '<%= event.getPlace() %>', '<%= event.getDescription() %>', '<%= event.getCategory().getId() %>');"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                     <a href="#deleteEventModal" class="delete" data-toggle="modal" onclick="setEventId(<%= event.getId() %>);"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </td>
                     <%
@@ -146,7 +146,7 @@
 <div id="editEventModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="event-servlet/editEvent" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Event</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -154,28 +154,28 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Event Name</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" value="" class="form-control" name="editEventName" id="editEventName" required>
                     </div>
                     <div class="form-group">
                         <label>Event Date</label>
-                        <input type="date" class="form-control" required>
+                        <input type="date" value="" class="form-control" name="editEventDate" id="editEventDate" required>
                     </div>
                     <div class="form-group">
                         <label>Event Place</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" value="" class="form-control" name="editEventPlace" id="editEventPlace" required>
                     </div>
                     <div class="form-group">
                         <label>Event Time</label>
-                        <input type="time" class="form-control" required>
+                        <input type="time" value="" class="form-control" name="editEventTime" id="editEventTime" required>
                     </div>
                     <div class="form-group">
                         <label class="">Category:</label>
-                        <select class="form-control" name="category_id" required>
-                            <option disabled selected> Select Category</option>
+                        <select class="form-control" name="editEventCategoryId" id="editEventCategoryId" required>
+                            <option value="" selected> Select Category</option>
                             <%
                                 for (Category category : categories) {
                             %>
-                            <option value="<%= category.getName() %>"><%= category.getName() %></option>
+                            <option value="<%= category.getId() %>"><%= category.getName() %></option>
                             <%
                                 }
                             %>
@@ -183,8 +183,10 @@
                     </div>
                     <div class="form-group">
                         <label>Event Description</label>
-                        <textarea class="form-control" required></textarea>
+                        <textarea class="form-control" value="" name="editEventDescription" id="editEventDescription" required></textarea>
                     </div>
+                    <!-- Hidden input for event ID -->
+                    <input type="hidden" name="editEventId" id="editEventId" value="">
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -217,6 +219,15 @@
     </div>
 </div>
 <script>
+    function editEvent(eventId, eventName, eventDate, eventTime, eventPlace, eventDescription, eventCategoryId) {
+        document.getElementById('editEventId').value = eventId;
+        document.getElementById('editEventName').value = eventName;
+        document.getElementById('editEventPlace').value = eventPlace;
+        document.getElementById('editEventTime').value = eventTime;
+        document.getElementById('editEventDate').valueAsDate = new Date(eventDate);
+        document.getElementById('editEventDescription').value = eventDescription;
+        document.getElementById('editEventCategoryId').value = eventCategoryId;
+    }
     function setEventId(eventId) {
         document.getElementById('eventId').value = eventId;
     }

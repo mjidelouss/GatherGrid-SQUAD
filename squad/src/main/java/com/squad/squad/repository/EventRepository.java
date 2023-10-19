@@ -59,7 +59,6 @@ public class EventRepository {
             event.setHour(updatedEvent.getHour());
             event.setDescription(updatedEvent.getDescription());
             event.setCategory(updatedEvent.getCategory());
-            event.setOrganiser(updatedEvent.getOrganiser());
             em.merge(event);
         }
         em.getTransaction().commit();

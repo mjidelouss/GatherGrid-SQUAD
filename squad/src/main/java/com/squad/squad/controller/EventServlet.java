@@ -52,14 +52,35 @@ public class EventServlet extends HttpServlet {
         }
         else if(path.contains("deleteEvent")) {
             doDelete(req, resp);
+        } else if(path.contains("editEvent")) {
+            editEvent(req, resp);
         }
     }
-
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void editEvent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        CategoryRepository categoryRepository = new CategoryRepository(em);
+        CategoryService categoryService = new CategoryService(categoryRepository);
+        Long eventId = Long.parseLong(req.getParameter("editEventId"));
+        String name = req.getParameter("editEventName");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = dateFormat.parse(req.getParameter("editEventDate"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        LocalTime localTime = LocalTime.parse(req.getParameter("editEventTime"));
+        Time time = Time.valueOf(localTime);
+        String place = req.getParameter("editEventPlace");
+        Long categoryId = Long.parseLong(req.getParameter("editEventCategoryId"));
+        String description = req.getParameter("editEventDescription");
+        Category category = categoryService.getCategoryById(categoryId);
+        User organiser = new User("johndoe", "John", "Doe", "user1@example.com", "password1");
+        organiser.setId((long)1);
+        Event updatedEvent = new Event(name, date, time, place, description, category, organiser);
+        eventService.updateEvent(updatedEvent, eventId);
+        resp.sendRedirect(req.getContextPath()+"/event-servlet");
     }
+
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long eventId = Long.parseLong(req.getParameter("eventId"));
@@ -77,7 +98,7 @@ public class EventServlet extends HttpServlet {
         try {
             date = dateFormat.parse(req.getParameter("eventDate"));
         } catch (ParseException e) {
-            e.printStackTrace(); // Handle the parsing exception as needed
+            e.printStackTrace();
         }
         LocalTime localTime = LocalTime.parse(req.getParameter("eventTime"));
         Time time = Time.valueOf(localTime);
