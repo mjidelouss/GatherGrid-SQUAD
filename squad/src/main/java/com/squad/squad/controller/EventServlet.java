@@ -80,13 +80,11 @@ public class EventServlet extends HttpServlet {
         eventService.updateEvent(updatedEvent, eventId);
         resp.sendRedirect(req.getContextPath()+"/event-servlet");
     }
-
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long eventId = Long.parseLong(req.getParameter("eventId"));
         eventService.deleteEvent(eventId);
         resp.sendRedirect(req.getContextPath()+"/event-servlet");
-
     }
 
     protected void addEvent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
