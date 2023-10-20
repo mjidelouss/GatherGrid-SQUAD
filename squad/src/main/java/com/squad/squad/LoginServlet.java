@@ -16,4 +16,21 @@ public class LoginServlet extends HttpServlet {
     }
 
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String uemail =request.getParameter("email");
+        String upwd =request.getParameter("password");
+        Optional<User> user = service.CheckEmail(uemail , upwd);
+        if (user.isPresent()) {
+            request.getSession(true).setAttribute("user", user.get());
+            request.setAttribute("success", "You are logged in successfully");
+            this.getServletContext().getRequestDispatcher("/WEB-INF/test.jsp").forward(request, response);
+        } else {
+            request.setAttribute("validationEmail", "Email Or Password Not exists.");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+        }
+    }
+
+    public void destroy() {
+
+    }
 }
