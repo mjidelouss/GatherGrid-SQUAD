@@ -7,7 +7,7 @@
             <p class="mx-auto fw-bold text-white">est conçue  pour vous. Decouvrez des evenements uniques, reservez vos places en quelques clics, </p>
             <p class="mx-auto fw-bold text-white">  et partagez des moments memorables avec d'autres passionnes.</p>
 
-            <button class="btn btn-white mt-4 py-3 mx-auto fw-bold" style=" width: 40% !important; color: #020202 !important; background-color: #BCCFD5 !important;">Ouvrir un compte maintenant </button>
+            <button class="btn btn-white mt-4 py-3 mx-auto fw-bold" style=" width: 40% !important; color: white !important; background-color: #C13584 !important;">Ouvrir un compte maintenant </button>
         </div>
         <div class="col-4 d-flex justify-content-center rounded pt-4">
             <img

@@ -23,8 +23,10 @@
 
 <%@ include file="wrapper.jsp"%>
 
+<%@ include file="eventsSection.jsp"%>
+
 <!--<a href="profileSettings.jsp">profile</a>-->
->>
+
 <%@ include file="footer.jsp"%>
 </body>
 
