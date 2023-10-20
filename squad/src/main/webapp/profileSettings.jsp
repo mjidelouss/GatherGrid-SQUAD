@@ -18,7 +18,7 @@
 
 <section>
     <div class="content-wrapper">
-        <div class="container-fluid flex-grow-1 mt-5" style="max-width: 1600px !important;">
+        <div class="container-fluid flex-grow-1 mt-5" style="max-width: 1500px !important;">
             <div class="row">
                 <div class="col-md-12 ps-0 ms-0">
                     <ul class="nav nav-pills flex-column flex-md-row my-4">
@@ -51,35 +51,35 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="lastname" class="form-label text-white">Nom</label>
-                                    <input class="form-control text-white border-white bg-transparent" type="text" id="lastname" name="lastname" value=""/>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" id="lastname" name="lastname" value=""/>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="firstname" class="form-label text-white">Prénom</label>
-                                    <input class="form-control text-white border-white bg-transparent" type="text" name="firstname" id="firstname" value=""/>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" name="firstname" id="firstname" value=""/>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="email" class="form-label text-white">Adresse Mail</label>
-                                    <input class="form-control text-white border-white bg-transparent" type="email" id="email" name="email" value=""/>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="email" id="email" name="email" value=""/>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label text-white" for="mobile">Mobile</label>
-                                    <input type="text" id="mobile" name="mobile" class="form-control text-white border-white bg-transparent" value=""/>
+                                    <input type="text" id="mobile" name="mobile" class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" value=""/>
                                 </div>
                             </div>
 
                             <div class="col-md-12 d-flex justify-content-start my-3">
                                 <button type="submit" class="btn btn-primary me-3 border-0 fw-bold px-4 py-2" style="background-color: #C3C6E2 !important; color: #020202 !important;">Sauvegarder Les Changements</button>
-                                <a href="" type="reset" class="btn btn-secondary border-0 fw-bold px-4 py-2" style="background-color: #1C889C !important; color:white;">Quitter</a>
+                                <a href="" type="reset" class="btn btn-secondary border-0 fw-bold px-4 py-2" style="background-color: #C13584 !important; color:white;">Quitter</a>
                             </div>
 
                         </form>
                     </div>
                 </div>
                 <div class="card mt-3 mb-5 border-0 px-5 py-4 shadow-5" style="background-color: #2f3349">
-                    <h5 class="fw-bold" style="color: #C3C6E2">Changer Mon Mot de Passe</h5>
+                    <h5 class="" style="color: #C3C6E2">Changer Mon Mot de Passe</h5>
                     <hr style="color: #C3C6E2">
                     <div class="card-body p-0">
                         <form  action="">
@@ -87,30 +87,30 @@
                                 <div class="mb-3 col-md-4 form-password-toggle">
                                     <label for="current_password" class="form-label text-white">Mot de passe actuel</label>
                                     <div class="input-group input-group-merge">
-                                        <input class="form-control text-white border-white bg-transparent"  id="current_password" type="password" name="current_password"  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
-                                        <span class="input-group-text cursor-pointe bg-transparent"><i class='bx bx-low-vision' style="color: white"></i></span>
+                                        <input class="form-control text-white border-white bg-transparent border-end-0"  id="current_password" type="password" name="current_password" style="box-shadow: none !important;" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
+                                        <span class="input-group-text cursor-pointe bg-transparent border-start-0"><i class='bx bx-low-vision' style="color: white"></i></span>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4 form-password-toggle">
                                     <label for="new_password"  class="form-label text-white">Nouveau mot de passe</label>
                                     <div class="input-group input-group-merge">
-                                        <input class="form-control text-white border-white bg-transparent" id="new_password" type="password" name="new_password"  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
-                                        <span class="input-group-text cursor-pointer bg-transparent"><i class='bx bx-low-vision' style="color: white"></i></span>
+                                        <input class="form-control text-white border-white bg-transparent border-end-0" id="new_password" type="password" name="new_password" style="box-shadow: none !important;"  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
+                                        <span class="input-group-text cursor-pointer bg-transparent border-start-0"><i class='bx bx-low-vision' style="color: white"></i></span>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4 form-password-toggle">
                                     <label for="new_password_confirmation" class="form-label text-white">Confirmation du nouveau mot de passe</label>
                                     <div class="input-group input-group-merge">
-                                        <input class="form-control text-white border-white bg-transparent" id="new_password_confirmation" type="password" name="new_password_confirmation"  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
-                                        <span class="input-group-text cursor-pointer bg-transparent"><i class='bx bx-low-vision' style="color: white"></i></span>
+                                        <input class="form-control text-white border-white bg-transparent border-end-0" id="new_password_confirmation" type="password" name="new_password_confirmation" style="	box-shadow: none !important;" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
+                                        <span class="input-group-text cursor-pointer bg-transparent border-start-0"><i class='bx bx-low-vision' style="color: white"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex justify-content-start mt-3">
                                 <button class="btn btn-primary me-3 border-0 fw-bold px-4 py-2" type="submit" style="background-color: #C3C6E2 !important; color: #020202 !important;">Changer Mot de Passe</button>
-                                <a href="" type="reset" class="btn btn-label-secondary border-0 fw-bold px-4 py-2" style="background-color: #1C889C !important; color:white;">Quitter</a>
+                                <a href="" type="reset" class="btn btn-label-secondary border-0 fw-bold px-4 py-2" style="background-color: #C13584 !important; color:white;">Quitter</a>
                             </div>
                         </form>
                     </div>
@@ -130,7 +130,7 @@
                         </div>
                         <form id="formAccountDeactivation" action=" ">
                             <div class="form-check mb-4">
-                                <input class="form-check-input bg-transparent" type="checkbox" name="accountActivation" id="accountActivation" value="1"/>
+                                <input class="form-check-input bg-transparent" style="box-shadow: none !important;" type="checkbox" name="accountActivation" id="accountActivation" value="1"/>
                                 <label class="form-check-label text-white" for="accountActivation">
                                     Je confirme la suppression de mon compte.
                                 </label>
