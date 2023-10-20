@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +24,26 @@
 				<div class="signup-content">
 					<div class="signup-form">
 						<h2 class="form-title">Sign up</h2>
-					
-						<form method="" action="" class="register-form"
+
+						<form method="post" action="register" class="register-form"
 							id="register-form">
+							<c:if test="${not empty message}">
+								<p>${message}</p>
+							</c:if>
 							<div class="form-group">
-								<label for="name"><i
+								<label for="username"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
-									type="text" name="name" id="name" placeholder="Your Name" />
+									type="text" name="username" id="username" placeholder="Your Username" />
+							</div>
+							<div class="form-group">
+								<label for="firstName"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="firstName" id="firstName" placeholder="Your First Name" />
+							</div>
+							<div class="form-group">
+								<label for="lastName"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="lastName" id="lastName" placeholder="Your Last Name" />
 							</div>
 							<div class="form-group">
 								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
@@ -37,18 +51,18 @@
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="pass" id="pass" placeholder="Password" />
+									type="password" name="password" id="pass" placeholder="Password" />
 							</div>
 							<div class="form-group">
-								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+								<%--@declare id="re-pass"--%><label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="password" name="re_pass" id="re_pass"
 									placeholder="Repeat your password" />
 							</div>
-							<div class="form-group">
+							<%--<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="text" name="contact" id="contact"
 									placeholder="Contact no" />
-							</div>
+							</div>--%>
 							<div class="form-group">
 								<input type="checkbox" name="agree-term" id="agree-term"
 									class="agree-term" /> <label for="agree-term"

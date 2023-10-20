@@ -22,8 +22,7 @@ public class HelloServlet extends HttpServlet {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-//DEWD>ATC<RN
-    //delete event with date > mn chihaja and ticket count < mn chihaja retun name.
+
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         /*response.setContentType("text/html");
