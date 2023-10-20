@@ -28,7 +28,5 @@
                 <span class="ms-1">2023 Eventy - Tous les droits sont reserves </span>
             </p>
         </div>
-
-
     </div>
 </footer>

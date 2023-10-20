@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md" style="background-color: #020202">
+<nav class="navbar navbar-expand-md" style="background-color: transparent">
     <div class="container-fluid">
         <a class="navbar-brand d-flex justify-content-center align-items-center ms-lg-3 ms-md-3" href="">
             <img class="logo" src="./src/img/logo1.png" alt="" width="35" height="35">

@@ -12,16 +12,16 @@
   <title>Eventy - Accueil</title>
   <link href="./src/css/navbar.css" rel="stylesheet">
   <link href="./src/css/footer.css" rel="stylesheet">
+  <link href="./src/css/style.css" rel="stylesheet">
   <link href="./src/css/banner.css" rel="stylesheet">
 
 </head>
-<body style="background-color: #020202; font-family: 'Poppins', sans-serif;">
+<body>
 <%@ include file="navbar.jsp"%>
 
 <%@ include file="banner.jsp"%>
 
-
-<!--<a href="hello-servlet">Hello Servlet</a>-->
+<a href="profileSettings.jsp">profile</a>
 
 <%@ include file="footer.jsp"%>
 </body>
