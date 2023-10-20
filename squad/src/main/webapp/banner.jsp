@@ -8,7 +8,7 @@
             <p class="slide-title">Explorez un monde d'evenements passionnants</p>
             <p class="slide-text"> et reservez votre place des maintenant. </p>
             <p class="slide-text">Votre prochaine aventure commence ici</p>
-            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements</button>
+            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements <i class="bi bi-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
             <p class="slide-title">Explorez un monde d'evenements passionnants </p>
             <p class="slide-text"> et reservez votre place des maintenant. </p>
             <p class="slide-text">Votre prochaine aventure commence ici</p>
-            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements</button>
+            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements <i class="bi bi-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
             <p class="slide-title">Explorez un monde d'evenements passionnants</p>
             <p class="slide-text"> et reservez votre place des maintenant. </p>
             <p class="slide-text">Votre prochaine aventure commence ici</p>
-            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements</button>
+            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements <i class="bi bi-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
             <p class="slide-title">Explorez un monde d'evenements passionnants</p>
             <p class="slide-text"> et reservez votre place des maintenant. </p>
             <p class="slide-text">Votre prochaine aventure commence ici</p>
-            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements</button>
+            <button class="event_btn btn btn-white mt-4 px-5 py-3">Parcourir les evenements <i class="bi bi-arrow-right"></i></button>
           </div>
         </div>
       </div>
