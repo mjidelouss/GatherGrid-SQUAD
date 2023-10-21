@@ -9,7 +9,7 @@
 
             <button class="btn btn-white mt-4 py-3 mx-auto fw-bold" style=" width: 40% !important; color: white !important; background-color: #C13584 !important;">Ouvrir un compte maintenant </button>
         </div>
-        <div class="col-4 d-flex justify-content-center rounded pt-4">
+        <div class="col-4 d-flex justify-content-end rounded pt-4">
             <img
                     src="src/img/page-misc-launching-soon.png"
                     alt="wizard-create-deal"
