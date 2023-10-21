@@ -6,10 +6,18 @@
   <persistence-unit name="default">
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+<<<<<<< HEAD
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/squadgather?createDatabaseIfNotExist=true"/>
+=======
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gathergrid?CreateDatabaseIfNotExist=true"/>
+>>>>>>> main
       <property name="jakarta.persistence.jdbc.user" value="root"/>
       <property name="jakarta.persistence.jdbc.password" value=""/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
   </persistence-unit>
 </persistence>
