@@ -1,9 +1,12 @@
 package com.squad.squad.controller;
 
 import java.io.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.servlet.ServletException;
 import java.sql.Time;
 import java.util.Date;
-
 import com.squad.squad.domain.Event;
 import com.squad.squad.service.EventService;
 import com.squad.squad.utils.EntityManagerUtil;
@@ -18,15 +21,23 @@ public class HelloServlet extends HttpServlet {
     public void init() {
         EntityManager em = EntityManagerUtil.getEntityManager();
     }
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        /*response.setContentType("text/html");
 
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+        out.println("</body></html>");*/
+        this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
     }
 
     public void destroy() {
