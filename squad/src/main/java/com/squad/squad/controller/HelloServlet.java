@@ -1,11 +1,16 @@
-package com.squad.squad;
+package com.squad.squad.controller;
 
 import java.io.*;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
+import java.sql.Time;
+import java.util.Date;
+import com.squad.squad.domain.Event;
+import com.squad.squad.service.EventService;
+import com.squad.squad.utils.EntityManagerUtil;
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -14,7 +19,7 @@ public class HelloServlet extends HttpServlet {
     private String message;
 
     public void init() {
-        message = "Hello World!";
+        EntityManager em = EntityManagerUtil.getEntityManager();
     }
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
