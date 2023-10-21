@@ -1,8 +1,6 @@
 package com.squad.squad.repository;
 import com.squad.squad.domain.Event;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
 import java.util.Date;
