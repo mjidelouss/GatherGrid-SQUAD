@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Objects;
 
@@ -32,7 +33,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public User() {
@@ -100,5 +101,7 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+
 }
 
