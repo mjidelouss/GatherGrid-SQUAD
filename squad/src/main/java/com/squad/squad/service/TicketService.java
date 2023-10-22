@@ -1,6 +1,8 @@
 package com.squad.squad.service;
 
+import com.squad.squad.domain.Event;
 import com.squad.squad.domain.Ticket;
+import com.squad.squad.domain.enums.TicketType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -13,6 +15,15 @@ public class TicketService {
 
     public  TicketService(){
         entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    }
+    
+    public List<Ticket> findByTicketType(TicketType ticketType) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<Ticket> tickets = entityManager.createQuery("SELECT t FROM Ticket t WHERE t.ticketType = :type", Ticket.class)
+                .setParameter("type", ticketType)
+                .getResultList();
+        entityManager.close();
+        return tickets;
     }
 
 
@@ -62,6 +73,15 @@ public class TicketService {
         }
         entityManager.getTransaction().commit();
         entityManager.close();
+    }
+
+    public List<Ticket> findByEvent(Event event){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<Ticket> tickets = entityManager.createQuery("SELECT t FROM Ticket t where t.event = :event ", Ticket.class)
+                .setParameter("event", event)
+                .getResultList();
+        entityManager.close();
+        return tickets;
     }
 
 }
