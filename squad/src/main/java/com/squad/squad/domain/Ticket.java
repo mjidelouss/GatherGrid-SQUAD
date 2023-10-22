@@ -10,9 +10,9 @@ public class Ticket {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double price;
+    private Double price;
 
-    private int availableQuantity;
+    private Integer availableQuantity;
 
     private TicketType ticketType;
 
@@ -47,7 +47,7 @@ public class Ticket {
         this.price = price;
     }
 
-    public int getAvailableQuantity() {
+    public Integer getAvailableQuantity() {
         return availableQuantity;
     }
 
