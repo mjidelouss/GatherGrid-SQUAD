@@ -1,45 +1,49 @@
 package com.squad.squad.domain;
-
 import com.squad.squad.domain.enums.TicketType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 public class Ticket {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private double price;
+
     private int availableQuantity;
+
     private TicketType ticketType;
 
+    @ManyToOne
+    private Event event;
 
-    public void setId(Long id) {
-        this.id = id;
+
+
+    public Ticket() {
+    }
+
+    public Ticket(double price, int availableQuantity, TicketType ticketType, Event event) {
+        this.price = price;
+        this.availableQuantity = availableQuantity;
+        this.ticketType = ticketType;
+        this.event = event;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Ticket(double price, int availableQuantity, TicketType ticketType) {
-        this.price = price;
-        this.availableQuantity = availableQuantity;
-        this.ticketType = ticketType;
-    }
-
-    public Ticket() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrix(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -59,13 +63,32 @@ public class Ticket {
         this.ticketType = ticketType;
     }
 
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+
     @Override
     public String toString() {
-        return "Billet{" +
-                "prix=" + price +
-                ", quantiteDisponible=" + availableQuantity +
-                ", billetType=" + ticketType +
+        return "Ticket{" +
+                "id=" + id +
+                ", price=" + price +
+                ", availableQuantity=" + availableQuantity +
+                ", ticketType=" + ticketType +
+                ", event=" + event +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return Double.compare(ticket.price, price) == 0 && availableQuantity == ticket.availableQuantity && Objects.equals(id, ticket.id) && ticketType == ticket.ticketType && Objects.equals(event, ticket.event);
     }
 
 
