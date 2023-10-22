@@ -12,11 +12,11 @@ import jakarta.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
     private String message;
     public void init() {
-        UserManagementService userManagementService = new UserManagementService();
+        //UserManagementService userManagementService = new UserManagementService();
         //public User(String username, String firstName, String lastName, String email, String password) {
         //User user = new User("Asmae", "Asmae", "Asmae", "aaa@aaa.com", "asmae");
         //userManagementService.updateUser(user, (long) 6);
-        userManagementService.deleteUser((long)9);
+        //userManagementService.deleteUser((long)9);
         message = "Hello World!";
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

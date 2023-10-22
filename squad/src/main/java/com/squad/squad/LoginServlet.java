@@ -15,7 +15,6 @@ public class LoginServlet extends HttpServlet {
     public void init() {
     }
 
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String uemail =request.getParameter("email");
         String upwd =request.getParameter("password");
@@ -31,6 +30,5 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void destroy() {
-
     }
 }

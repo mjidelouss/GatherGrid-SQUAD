@@ -1,14 +1,6 @@
 package com.squad.squad.service;
 import com.squad.squad.repository.EventRepository;
 
-<<<<<<< HEAD
-public class EventService {
-    public final EventRepository eventRepository;
-    public EventService(){
-        eventRepository = new EventRepository();
-    }
-}
-=======
 import com.squad.squad.domain.Event;
 import com.squad.squad.repository.EventRepository;
 
@@ -57,4 +49,4 @@ public class EventService {
         return eventRepository.getEventsOfOrganiser(id);
     }
 }
->>>>>>> main
+

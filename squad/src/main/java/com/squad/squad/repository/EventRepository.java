@@ -10,12 +10,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class EventRepository {
-<<<<<<< HEAD
-    private final EntityManagerFactory entityManagerFactory;
 
-    public EventRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
-=======
     private final EntityManager em;
     public EventRepository(EntityManager em){
         this.em = em;
@@ -78,6 +73,5 @@ public class EventRepository {
             em.remove(event);
         }
         em.getTransaction().commit();
->>>>>>> main
     }
 }
