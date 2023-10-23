@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1> hello hajjou</h1>
+<h1> hello </h1>
+<a href="logout">Logout</a>
 </body>
 </html>
