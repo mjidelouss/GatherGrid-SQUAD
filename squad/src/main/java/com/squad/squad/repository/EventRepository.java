@@ -6,7 +6,11 @@ import jakarta.persistence.TypedQuery;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 public class EventRepository {
+
     private final EntityManager em;
     public EventRepository(EntityManager em){
         this.em = em;

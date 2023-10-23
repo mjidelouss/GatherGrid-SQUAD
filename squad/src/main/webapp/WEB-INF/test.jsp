@@ -11,7 +11,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1> hello </h1>
+
+<h1> hello
+${
+    user.getFirstName()
+}
+</h1>
+<a href="manage-profile">
+    Manage profile
+</a>
+
 <a href="logout">Logout</a>
+
 </body>
 </html>
