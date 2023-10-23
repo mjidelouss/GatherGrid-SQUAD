@@ -1,4 +1,4 @@
-<div class="container mt-5" style="max-width: 1675px">
+<div class="container my-5" style="max-width: 1675px">
     <div class="row">
         <div class="col-sm-12 text-center my-5 ">
             <h3 class="section-title fw-bold" style="color: #C3C6E2"> Notre Partenaires </h3>
