@@ -11,22 +11,34 @@ public class Event {
     private String name;
     private Date date;
     private Time hour;
-    private String lieu;
+    private String place;
     private String description;
     @ManyToOne
     private Category category;
     @OneToMany
-    private List<Comment> commentaires;
+    private List<Comment> comments;
+    @ManyToOne
+    private User organiser;
 
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String lieu, String description) {
+    public Event(String name, Date date, Time hour, String place, String description, Category category, User organiser) {
         this.name = name;
         this.date = date;
         this.hour = hour;
-        this.lieu = lieu;
+        this.place = place;
         this.description = description;
+        this.category = category;
+        this.organiser = organiser;
+    }
+
+    public User getOrganiser() {
+        return organiser;
+    }
+
+    public void setOrganiser(User organiser) {
+        this.organiser = organiser;
     }
 
     public Long getId() {
@@ -61,12 +73,12 @@ public class Event {
         this.hour = hour;
     }
 
-    public String getLieu() {
-        return lieu;
+    public String getPlace() {
+        return place;
     }
 
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getDescription() {
@@ -83,6 +95,27 @@ public class Event {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", hour=" + hour +
+                ", place='" + place + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", commentaires=" + comments +
+                '}';
     }
 }
 
