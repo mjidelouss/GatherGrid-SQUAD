@@ -21,7 +21,7 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Connexion</a>
+                    <a class="nav-link text-light" href="LoginServlet">Connexion</a>
                 </li>
                 <button type="button" class="btn btn-outline-light ms-3 me-lg-3 me-md-3">Inscrire</button>
             </ul>

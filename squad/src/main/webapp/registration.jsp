@@ -53,11 +53,11 @@
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
 									type="password" name="password" id="pass" placeholder="Password" />
 							</div>
-							<div class="form-group">
-								<%--@declare id="re-pass"--%><label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+							<%--<div class="form-group">
+								&lt;%&ndash;@declare id="re-pass"&ndash;%&gt;<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="password" name="re_pass" id="re_pass"
 									placeholder="Repeat your password" />
-							</div>
+							</div>--%>
 							<%--<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="text" name="contact" id="contact"
