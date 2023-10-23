@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <h1> hello
 ${
     user.getFirstName()
@@ -19,5 +20,8 @@ ${
 <a href="manage-profile">
     Manage profile
 </a>
+
+<a href="logout">Logout</a>
+
 </body>
 </html>
