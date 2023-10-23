@@ -16,7 +16,7 @@
                     <a class="nav-link text-light me-5" href="eventsPage.jsp">Evenements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light me-5" href="#">Contact</a>
+                    <a class="nav-link text-light me-5" href="contact.jsp">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
