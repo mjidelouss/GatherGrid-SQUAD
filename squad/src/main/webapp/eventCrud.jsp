@@ -148,7 +148,7 @@
     </div>
 </div>
 <!-- Edit Modal HTML -->
-            <div class="modal fade" id="editEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModal" aria-hidden="true">
+            <div class="modal fade" id="editEventModal" tabindex="-1" role="dialog" aria-labelledby="editEventModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content rounded-0">
                         <div class="modal-body py-0">

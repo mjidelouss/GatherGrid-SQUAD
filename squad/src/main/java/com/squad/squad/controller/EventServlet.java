@@ -36,13 +36,13 @@ public class EventServlet extends HttpServlet {
     }
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Event> events = eventService.getAllEvents();
-        CategoryRepository categoryRepository = new CategoryRepository(em);
-        CategoryService categoryService = new CategoryService(categoryRepository);
-        List<Category> categories = categoryService.getAllCategories();
-        request.setAttribute("events", events);
-        request.setAttribute("categories", categories);
-        request.getRequestDispatcher("eventCrud.jsp").forward(request, response);
+            List<Event> events = eventService.getAllEvents();
+            CategoryRepository categoryRepository = new CategoryRepository(em);
+            CategoryService categoryService = new CategoryService(categoryRepository);
+            List<Category> categories = categoryService.getAllCategories();
+            request.setAttribute("events", events);
+            request.setAttribute("categories", categories);
+            request.getRequestDispatcher("eventCrud.jsp").forward(request, response);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
