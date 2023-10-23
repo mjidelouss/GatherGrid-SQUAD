@@ -40,9 +40,7 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepository.deleteEvent(id);
     }
-    public List<Event> getAllEvents() {
-        return eventRepository.getAllEvents();
-    }
+    public List<Event> getAllEvents() {return eventRepository.getAllEvents();}
 
     public List<Event> getEventsOfOrganiser(Long id) {
         return eventRepository.getEventsOfOrganiser(id);
