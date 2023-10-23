@@ -13,7 +13,7 @@
                     <a class="nav-link text-light me-5 text-bold" href="about.jsp">A propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light me-5" href="#">Evenements</a>
+                    <a class="nav-link text-light me-5" href="eventsPage.jsp">Evenements</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light me-5" href="#">Contact</a>
