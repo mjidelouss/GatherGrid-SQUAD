@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet(name = "LoginServlet", value = "/LoginServlet")
+@WebServlet(name = "LoginServlet", value ={ "/LoginServlet","/logout"})
 public class LoginServlet extends HttpServlet {
     UserService service = new UserService();
     public void init() {
@@ -24,11 +24,25 @@ public class LoginServlet extends HttpServlet {
             request.getSession(true).setAttribute("user", user.get());
             request.setAttribute("success", "You are logged in successfully");
             this.getServletContext().getRequestDispatcher("/WEB-INF/test.jsp").forward(request, response);
-        } else {
+        }else {
             request.setAttribute("validationEmail", "Email Or Password Not exists.");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getRequestURL().toString();
+        if (path.contains("logout")) {
+            HttpSession session = req.getSession(false);
+            if (session != null) {
+                req.getSession().invalidate();
+            }
+            req.setAttribute("message", "you are logged out !!");
+            this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+        }
+    }
+
 
     public void destroy() {
 
