@@ -20,7 +20,7 @@
     <script src="src/js/eventCrud.js" type="module"></script>
 </head>
 <body>
-<%@ include file="eventNavbar.jsp"%>
+<%@ include file="navbar.jsp"%>
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
