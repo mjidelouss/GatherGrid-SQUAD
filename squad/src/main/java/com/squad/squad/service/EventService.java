@@ -1,4 +1,5 @@
 package com.squad.squad.service;
+import com.squad.squad.repository.EventRepository;
 
 import com.squad.squad.domain.Event;
 import com.squad.squad.repository.EventRepository;
@@ -40,9 +41,7 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepository.deleteEvent(id);
     }
-    public List<Event> getAllEvents() {
-        return eventRepository.getAllEvents();
-    }
+    public List<Event> getAllEvents() {return eventRepository.getAllEvents();}
 
     public List<Event> getEventsOfOrganiser(Long id) {
         return eventRepository.getEventsOfOrganiser(id);
@@ -54,3 +53,4 @@ public class EventService {
 
 
 }
+
