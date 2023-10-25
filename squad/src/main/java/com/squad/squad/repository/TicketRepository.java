@@ -1,8 +1,6 @@
 package com.squad.squad.repository;
-
 import com.squad.squad.domain.Event;
 import com.squad.squad.domain.Ticket;
-import com.squad.squad.domain.enums.TicketType;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -12,14 +10,6 @@ public class TicketRepository {
     public TicketRepository(EntityManager em){
         this.em = em;
     }
-
-    public List<Ticket> findByTicketType(TicketType ticketType) {
-        List<Ticket> tickets = em.createQuery("SELECT t FROM Ticket t WHERE t.ticketType = :type", Ticket.class)
-                .setParameter("type", ticketType)
-                .getResultList();
-        return tickets;
-    }
-
 
     public void save(Ticket ticket){
         em.getTransaction().begin();
@@ -57,9 +47,7 @@ public class TicketRepository {
     }
 
     public List<Ticket> findByEvent(Event event){
-        List<Ticket> tickets = em.createQuery("SELECT t FROM Ticket t where t.event = :event ", Ticket.class)
-                .setParameter("event", event)
+        return em.createQuery("SELECT t FROM Ticket t where t.event = event ", Ticket.class)
                 .getResultList();
-        return tickets;
     }
 }

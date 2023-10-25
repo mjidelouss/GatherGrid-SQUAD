@@ -10,8 +10,6 @@ import java.util.List;
 public class TicketService {
 
     private TicketRepository ticketRepository;
-    private EventService eventService;
-
     public TicketService(TicketRepository ticketRepository){
         this.ticketRepository = ticketRepository;
     }
@@ -26,7 +24,7 @@ public class TicketService {
 
         Integer availableQuantity = ticket.getAvailableQuantity();
 
-        if (availableQuantity < 0){
+        if (availableQuantity <= 0){
             return false;
         }
         if (ticket.getTicketType() == null) {
@@ -41,16 +39,9 @@ public class TicketService {
         return true;
 
     }
-
-
     public List<Ticket> getTicketByEvent(Event event){
         return ticketRepository.findByEvent(event);
     }
-
-    public List<Ticket> getTicketByType(TicketType ticketType){
-        return ticketRepository.findByTicketType(ticketType);
-    }
-
     public Ticket getTicketById(Long ticketId){
         return ticketRepository.findById(ticketId);
     }
@@ -66,8 +57,6 @@ public class TicketService {
         }
         return "Échec de l'enregistrement du billet. Veuillez vérifier les données.";
     }
-
-
     public String updateTicket(Ticket ticketUpdated) {
         if (isValidateTicket(ticketUpdated)) {
             ticketRepository.update(ticketUpdated);
@@ -81,7 +70,6 @@ public class TicketService {
         ticketRepository.delete(ticketId);
         return "Le billet a été supprimé avec succès !";
     }
-
     public Long getTicketId(Long id) {
         return ticketRepository.getTicketId(id);
     }

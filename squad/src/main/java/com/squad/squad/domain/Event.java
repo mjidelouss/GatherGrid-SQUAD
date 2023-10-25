@@ -1,10 +1,8 @@
 package com.squad.squad.domain;
 import jakarta.persistence.*;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Event {
@@ -115,7 +113,6 @@ public class Event {
                 ", place='" + place + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
-                ", commentaires=" +
                 ", tickets = "+tickets+
                 '}';
     }

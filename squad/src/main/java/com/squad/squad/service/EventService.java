@@ -46,8 +46,17 @@ public class EventService {
     public List<Event> getEventsOfOrganiser(Long id) {
         return eventRepository.getEventsOfOrganiser(id);
     }
+<<<<<<< HEAD
     public Event getEvent(Long id) {
         return eventRepository.getEvent(id);
     }
+=======
+
+    public Event getEventById(Long id) {
+        return eventRepository.getEvent(id);
+    }
+
+
+>>>>>>> main
 }
 
