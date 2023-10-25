@@ -1,4 +1,5 @@
 package com.squad.squad.service;
+import com.squad.squad.domain.User;
 import com.squad.squad.repository.EventRepository;
 
 import com.squad.squad.domain.Event;
@@ -43,8 +44,8 @@ public class EventService {
     }
     public List<Event> getAllEvents() {return eventRepository.getAllEvents();}
 
-    public List<Event> getEventsOfOrganiser(Long id) {
-        return eventRepository.getEventsOfOrganiser(id);
+    public List<Event> getEventsOfOrganiser(User org) {
+        return eventRepository.getEventsOfOrganiser(org);
     }
     public Event getEvent(Long id) {
         return eventRepository.getEvent(id);
