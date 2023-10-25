@@ -1,3 +1,4 @@
+<%@ page import="com.squad.squad.domain.User" %>
 <nav class="navbar navbar-expand-md" style="background-color: #020202">
     <div class="container-fluid">
         <a class="navbar-brand d-flex justify-content-center align-items-center ms-lg-3 ms-md-3" href="">
@@ -20,10 +21,18 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
+                <% if (session.getAttribute("user") != null) { %>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#"></a>
+                    <a class="nav-link text-light" href="LogoutServlet">Logout</a>
                 </li>
-                <button type="button" class="btn btn-outline-light ms-2 me-lg-3 me-md-3">Profile</button>
+                <button type="button" class="btn btn-outline-light ms-3 me-lg-3 me-md-3">>
+                    <%= ((User) session.getAttribute("user")).getFirstName() %>
+                </button>
+                <% } else { %>
+                <%
+                    response.sendRedirect("LoginServlet");
+                %>
+                <% } %>
             </ul>
         </div>
     </div>

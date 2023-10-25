@@ -33,9 +33,9 @@ public class EventService {
         }
         return eventRepository.searchEvents(name, date, hour, place, jpql);
     }
-    public Event updateEvent(Event event, Long id) {
+    public Event updateEvent(Event event) {
 
-        return eventRepository.updateEvent(event, id);
+        return eventRepository.updateEvent(event);
     }
     public void deleteEvent(Long id) {
         eventRepository.deleteEvent(id);
@@ -46,5 +46,8 @@ public class EventService {
 
     public List<Event> getEventsOfOrganiser(Long id) {
         return eventRepository.getEventsOfOrganiser(id);
+    }
+    public Event getEvent(Long id) {
+        return eventRepository.getEvent(id);
     }
 }

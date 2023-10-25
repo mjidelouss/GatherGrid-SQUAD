@@ -68,9 +68,9 @@
                         </tbody>
                     </table>
                 </div>
-                <hr class="m-0">
                 <div class="d-flex justify-content-center p-3 py-2">
-                    <button class="btn btn-danger opacity-75 px-4 py-1">Buy A Ticket</button>
+                    <button class="btn btn-primary opacity-75">Buy Standard Ticket</button>
+                    <button class="btn btn-warning opacity-75 px-4 ms-1">Buy VIP Ticket</button>
                 </div>
             </div>
         </div>
@@ -122,7 +122,6 @@
                                 <div class="sp-info">posted 2h ago</div>
                                 <p class="sp-paragraph mb-0">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
                             </div>
-
                         </div>
 
                         <div class="stream-post">

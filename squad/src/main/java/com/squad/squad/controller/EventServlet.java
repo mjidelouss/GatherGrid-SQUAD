@@ -1,13 +1,13 @@
 package com.squad.squad.controller;
 
-import com.squad.squad.domain.Category;
-import com.squad.squad.domain.Comment;
-import com.squad.squad.domain.Event;
-import com.squad.squad.domain.User;
+import com.squad.squad.domain.*;
+import com.squad.squad.domain.enums.TicketType;
 import com.squad.squad.repository.CategoryRepository;
 import com.squad.squad.repository.EventRepository;
+import com.squad.squad.repository.TicketRepository;
 import com.squad.squad.service.CategoryService;
 import com.squad.squad.service.EventService;
+import com.squad.squad.service.TicketService;
 import com.squad.squad.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
@@ -24,12 +24,17 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "eventServlet", value = "/event-servlet/*")
 public class EventServlet extends HttpServlet {
     private EntityManager em = EntityManagerUtil.getEntityManager();
     private EventRepository eventRepository = new EventRepository(em);
     private EventService eventService = new EventService(eventRepository);
+    private TicketRepository ticketRepository = new TicketRepository(em);
+
+    private TicketService ticketService = new TicketService(ticketRepository);
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -37,10 +42,12 @@ public class EventServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
             List<Event> events = eventService.getAllEvents();
+            List<Ticket> tickets = ticketService.getAllTickets();
+            List<Event> eventWithTickets = eventsWithTickets(events, tickets);
             CategoryRepository categoryRepository = new CategoryRepository(em);
             CategoryService categoryService = new CategoryService(categoryRepository);
             List<Category> categories = categoryService.getAllCategories();
-            request.setAttribute("events", events);
+            request.setAttribute("events", eventWithTickets);
             request.setAttribute("categories", categories);
             request.getRequestDispatcher("eventCrud.jsp").forward(request, response);
     }
@@ -59,6 +66,8 @@ public class EventServlet extends HttpServlet {
     protected void editEvent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CategoryRepository categoryRepository = new CategoryRepository(em);
         CategoryService categoryService = new CategoryService(categoryRepository);
+        TicketRepository ticketRepository = new TicketRepository(em);
+        TicketService ticketService = new TicketService(ticketRepository);
         Long eventId = Long.parseLong(req.getParameter("editEventId"));
         String name = req.getParameter("editEventName");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -74,15 +83,34 @@ public class EventServlet extends HttpServlet {
         Long categoryId = Long.parseLong(req.getParameter("editEventCategoryId"));
         String description = req.getParameter("editEventDescription");
         Category category = categoryService.getCategoryById(categoryId);
-        User organiser = new User("johndoe", "John", "Doe", "user1@example.com", "password1");
-        organiser.setId((long)1);
+        int ticketsQuantity = Integer.parseInt(req.getParameter("editEventTicketsQuantity"));
+        double ticketPrice = Double.parseDouble(req.getParameter("editEventTicketPrice"));
+        String type = req.getParameter("editEventTicketType");
+        Long ticketId = Long.parseLong(req.getParameter("editTicketId"));
+        TicketType ticketType;
+        if (type.equals("STANDARD")) {
+            ticketType = TicketType.STANDARD;
+        } else {
+            ticketType = TicketType.VIP;
+        }
+        User organiser = (User) req.getSession().getAttribute("user");
         Event updatedEvent = new Event(name, date, time, place, description, category, organiser);
-        eventService.updateEvent(updatedEvent, eventId);
+        updatedEvent.setId(eventId);
+        Ticket updatedTicket = new Ticket(ticketPrice, ticketsQuantity, ticketType, updatedEvent);
+        updatedTicket.setId(ticketId);
+        eventService.updateEvent(updatedEvent);
+        ticketService.updateTicket(updatedTicket);
         resp.sendRedirect(req.getContextPath()+"/event-servlet");
     }
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        TicketRepository ticketRepository = new TicketRepository(em);
+        TicketService ticketService = new TicketService(ticketRepository);
         Long eventId = Long.parseLong(req.getParameter("eventId"));
+        Long ticketId = Long.parseLong(req.getParameter("ticketId"));
+        System.out.println(ticketId);
+        System.out.println(eventId);
+        ticketService.deleteTicket(ticketId);
         eventService.deleteEvent(eventId);
         resp.sendRedirect(req.getContextPath()+"/event-servlet");
     }
@@ -90,6 +118,8 @@ public class EventServlet extends HttpServlet {
     protected void addEvent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CategoryRepository categoryRepository = new CategoryRepository(em);
         CategoryService categoryService = new CategoryService(categoryRepository);
+        TicketRepository ticketRepository = new TicketRepository(em);
+        TicketService ticketService = new TicketService(ticketRepository);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String name = req.getParameter("eventName");
         Date date = null;
@@ -103,15 +133,39 @@ public class EventServlet extends HttpServlet {
         String place = req.getParameter("eventPlace");
         Long categoryId = Long.parseLong(req.getParameter("eventCategory"));
         String description = req.getParameter("eventDescription");
+        int ticketsQuantity = Integer.parseInt(req.getParameter("eventTicketsQuantity"));
+        double ticketPrice = Double.parseDouble(req.getParameter("eventTicketPrice"));
+        String type = req.getParameter("eventTicketType");
+        TicketType ticketType;
+        if (type.equals("STANDARD")) {
+            ticketType = TicketType.STANDARD;
+        } else {
+            ticketType = TicketType.VIP;
+        }
         Category category = categoryService.getCategoryById(categoryId);
-        User organiser = new User("johndoe", "John", "Doe", "user1@example.com", "password1");
-        organiser.setId((long)1);
+        User organiser = (User) req.getSession().getAttribute("user");
         Event event = new Event(name, date, time, place, description, category, organiser);
+        Ticket ticket = new Ticket(ticketPrice, ticketsQuantity, ticketType, event);
         eventService.saveEvent(event);
+        ticketService.saveTicket(ticket);
         resp.sendRedirect(req.getContextPath()+"/event-servlet");
     }
+
     @Override
     public void destroy() {
 
     }
+
+    public List<Event> eventsWithTickets(List<Event> events, List<Ticket> tickets) {
+        return events.stream()
+                .map(event -> {
+                    List<Ticket> eventTickets = tickets.stream()
+                            .filter(ticket -> ticket.getEvent().getId() == event.getId())
+                            .collect(Collectors.toList());
+                    event.setTicket(eventTickets);
+                    return event;
+                })
+                .collect(Collectors.toList());
+    }
+
 }

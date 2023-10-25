@@ -55,6 +55,8 @@
             <tbody>
             <%
                 List<Event> events = (List<Event>) request.getAttribute("events");
+                System.out.println("------------");
+                System.out.println(events);
                 if (events != null && !events.isEmpty()) {
                     for (Event event : events) {
             %>
@@ -72,15 +74,16 @@
                 <td><%= event.getCategory().getName() %></td>
                 <td><%= event.getOrganiser().getFirstName() %></td>
                 <td>
-                    <a href="" class="edit" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="editEvent('<%= event.getId() %>', '<%= event.getName() %>', '<%= event.getDate() %>', '<%= event.getHour() %>', '<%= event.getPlace() %>', '<%= event.getDescription() %>', '<%= event.getCategory().getId() %>');"><i class="material-icons" data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                    <a href="" class="delete" data-bs-toggle="modal" data-bs-target="#deleteEventModal" onclick="setEventId(<%= event.getId() %>);"><i class="material-icons" data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    <a href="" class="edit" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="editEvent('<%= event.getId() %>', '<%= event.getName() %>', '<%= event.getDate() %>', '<%= event.getHour() %>', '<%= event.getPlace() %>', '<%= event.getDescription() %>', '<%= event.getCategory().getId() %>', '<%= event.getTicket().get(0).getPrice() %>', '<%= event.getTicket().get(0).getAvailableQuantity() %>', '<%= event.getTicket().get(0).getTicketType().name() %>', '<%= event.getTicket().get(0).getId() %>');"><i class="material-icons" data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a href="" class="delete" data-bs-toggle="modal" data-bs-target="#deleteEventModal" onclick="setEventId('<%= event.getId() %>', '<%= event.getTicket().get(0).getId() %>');"><i class="material-icons" data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </td>
+                <td></td>
                     <%
                 }
             } else {
         %>
             <tr>
-                <td colspan="4" class="">No Events found</td>
+                <td colspan="4" class="d-flex justify-content-center">No Events found</td>
             </tr>
             <%
                 }
@@ -92,7 +95,7 @@
 </div>
 <!-- Add Modal HTML -->
 <div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content rounded-0">
             <div class="modal-body py-0">
                 <div class="d-flex main-content">
@@ -132,6 +135,22 @@
                             %>
                         </select>
                     </div>
+                <div class="form-group">
+                    <label for="eventTicketsQuantity" class="col-form-label">Tickets Quantity</label>
+                    <input type="text" id="eventTicketsQuantity" name="eventTicketsQuantity" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventTicketPrice" class="col-form-label">Ticket Price</label>
+                    <input type="text" id="eventTicketPrice" name="eventTicketPrice" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label">Ticket Type:</label>
+                    <select id="ticketType" name="eventTicketType" class="form-control" required>
+                        <option disabled selected> Select Ticket Type</option>
+                        <option value="STANDARD">STANDARD</option>
+                        <option value="VIP">VIP</option>
+                    </select>
+                </div>
                     <div class="form-group">
                         <label for="eventDescription" class="col-form-label">Event Description</label>
                         <textarea id="eventDescription" name="eventDescription" class="form-control" required></textarea>
@@ -149,7 +168,7 @@
 </div>
 <!-- Edit Modal HTML -->
             <div class="modal fade" id="editEventModal" tabindex="-1" role="dialog" aria-labelledby="editEventModal" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                     <div class="modal-content rounded-0">
                         <div class="modal-body py-0">
                             <div class="d-flex main-content">
@@ -188,10 +207,27 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="editEventTicketsQuantity" class="col-form-label">Tickets Quantity</label>
+                                            <input type="text" id="editEventTicketsQuantity" name="editEventTicketsQuantity" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editEventTicketPrice" class="col-form-label">Ticket Price</label>
+                                            <input type="text" id="editEventTicketPrice" name="editEventTicketPrice" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-form-label">Ticket Type:</label>
+                                            <select id="editEventTicketType" name="editEventTicketType" class="form-control" required>
+                                                <option value="" selected> Select Ticket Type</option>
+                                                <option value="STANDARD">STANDARD</option>
+                                                <option value="VIP">VIP</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="editEventDescription" class="col-form-label">Event Description</label>
                                             <textarea id="editEventDescription" name="editEventDescription" class="form-control" required></textarea>
                                         </div>
                                         <input type="hidden" name="editEventId" id="editEventId" value="">
+                                        <input type="hidden" name="editTicketId" id="editTicketId" value="">
                                         <div class="form-group mt-3 d-flex justify-content-center">
                                             <input type="button" class="btn btn-default w-50 btn-block" data-bs-dismiss="modal" value="Cancel">
                                             <input type="submit" class="btn btn-info opacity-75 w-50 btn-block" value="Update Event">
@@ -219,6 +255,7 @@
                                 <input type="button" class="btn btn-default w-50 btn-block" data-bs-dismiss="modal" value="Cancel">
                                 <input type="submit" class="btn btn-danger opacity-75 w-50 btn-block" value="Delete">
                             </div>
+                            <input type="hidden" name="ticketId" id="ticketId" value="">
                             <input type="hidden" id="eventId" name="eventId">
                         </form>
                     </div>
@@ -228,7 +265,7 @@
     </div>
 </div>
 <script>
-        function editEvent(eventId, eventName, eventDate, eventTime, eventPlace, eventDescription, eventCategoryId) {
+        function editEvent(eventId, eventName, eventDate, eventTime, eventPlace, eventDescription, eventCategoryId, eventTicketPrice, eventTicketQuantity, eventTicketType, ticketId) {
             document.getElementById('editEventId').value = eventId;
             document.getElementById('editEventName').value = eventName;
             document.getElementById('editEventPlace').value = eventPlace;
@@ -236,9 +273,14 @@
             document.getElementById('editEventDate').valueAsDate = new Date(eventDate);
             document.getElementById('editEventDescription').value = eventDescription;
             document.getElementById('editEventCategoryId').value = eventCategoryId;
+            document.getElementById('editEventTicketsQuantity').value = eventTicketQuantity;
+            document.getElementById('editEventTicketPrice').value = eventTicketPrice;
+            document.getElementById('editEventTicketType').value = eventTicketType;
+            document.getElementById('editTicketId').value = ticketId;
         }
-        function setEventId(eventId) {
+        function setEventId(eventId, ticketId) {
             document.getElementById('eventId').value = eventId;
+            document.getElementById('ticketId').value = ticketId;
         }
 </script>
 </body>

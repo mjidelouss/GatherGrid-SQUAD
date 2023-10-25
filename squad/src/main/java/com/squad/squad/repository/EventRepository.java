@@ -46,28 +46,18 @@ public class EventRepository {
         return event;
     }
 
-    public Event updateEvent(Event updatedEvent, Long eventId) {
-        em.getTransaction().begin();
-        Event event = getEvent(eventId);
-        if (event != null) {
-            event.setName(updatedEvent.getName());
-            event.setPlace(updatedEvent.getPlace());
-            event.setCategory(updatedEvent.getCategory());
-            event.setDate(updatedEvent.getDate());
-            event.setHour(updatedEvent.getHour());
-            event.setDescription(updatedEvent.getDescription());
-            event.setCategory(updatedEvent.getCategory());
-            em.merge(event);
-        }
-        em.getTransaction().commit();
-        return event;
+    public Event updateEvent(Event updatedEvent) {
+            em.getTransaction().begin();
+            em.merge(updatedEvent);
+            em.getTransaction().commit();
+            return updatedEvent;
     }
     public void deleteEvent(Long eventId) {
-        em.getTransaction().begin();
         Event event = getEvent(eventId);
         if (event != null) {
+            em.getTransaction().begin();
             em.remove(event);
+            em.getTransaction().commit();
         }
-        em.getTransaction().commit();
     }
 }
