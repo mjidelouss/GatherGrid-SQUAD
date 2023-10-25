@@ -40,7 +40,8 @@ public class EventServlet extends HttpServlet {
     }
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-            List<Event> events = eventService.getAllEvents();
+            User organiser = (User) request.getSession().getAttribute("user");
+            List<Event> events = eventService.getEventsOfOrganiser(organiser.getId());
             List<Ticket> tickets = ticketService.getAllTickets();
             List<Event> eventWithTickets = eventsWithTickets(events, tickets);
             CategoryRepository categoryRepository = new CategoryRepository(em);

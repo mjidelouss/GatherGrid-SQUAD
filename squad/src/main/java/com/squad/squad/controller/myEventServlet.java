@@ -26,6 +26,5 @@ public class myEventServlet extends HttpServlet {
     }
     @Override
     public void destroy() {
-
     }
 }

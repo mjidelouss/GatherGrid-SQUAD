@@ -40,7 +40,7 @@
                 <% } else { %>
                 <a type="button" class="btn btn-outline-light ms-3 me-lg-3 me-md-3" href="registration.jsp">Inscrire</a>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="hello-servlet">Connexion</a>
+                    <a class="nav-link text-light" href="login.jsp">Connexion</a>
                 </li>
                 <% } %>
             </ul>
