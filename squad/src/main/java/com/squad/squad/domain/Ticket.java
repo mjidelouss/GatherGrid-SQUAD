@@ -16,7 +16,7 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     private TicketType ticketType;
-
+  
     @ManyToOne
     private Event event;
 

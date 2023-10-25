@@ -47,11 +47,14 @@ public class EventService {
     public List<Event> getEventsOfOrganiser(User org) {
         return eventRepository.getEventsOfOrganiser(org);
     }
-    public Event getEvent(Long id) {
-        return eventRepository.getEvent(id);
-    }
+
     public Event getEventById(Long id) {
         return eventRepository.getEvent(id);
     }
+  
+    public Event getEvent(Long id) {
+        return eventRepository.getEvent(id);
+    }
+
 }
 

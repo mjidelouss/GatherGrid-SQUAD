@@ -23,7 +23,7 @@
             <ul class="navbar-nav ms-auto">
                 <% if (session.getAttribute("user") != null) { %>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="LogoutServlet">Logout</a>
+                    <a class="nav-link text-light" href="logout">Logout</a>
                 </li>
                 <button type="button" class="btn btn-outline-light ms-3 me-lg-3 me-md-3">>
                     <%= ((User) session.getAttribute("user")).getFirstName() %>
