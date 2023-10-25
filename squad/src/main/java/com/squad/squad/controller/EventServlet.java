@@ -1,9 +1,6 @@
 package com.squad.squad.controller;
 
-import com.squad.squad.domain.Category;
-import com.squad.squad.domain.Comment;
-import com.squad.squad.domain.Event;
-import com.squad.squad.domain.User;
+import com.squad.squad.domain.*;
 import com.squad.squad.repository.CategoryRepository;
 import com.squad.squad.repository.EventRepository;
 import com.squad.squad.service.CategoryService;
@@ -22,6 +19,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
