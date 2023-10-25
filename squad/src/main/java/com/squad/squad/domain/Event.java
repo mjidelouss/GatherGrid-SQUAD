@@ -1,6 +1,7 @@
 package com.squad.squad.domain;
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class Event {
         this.category = category;
         this.organiser = organiser;
     }
+
+
 
     public User getOrganiser() {
         return organiser;
