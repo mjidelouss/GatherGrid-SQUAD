@@ -1,5 +1,6 @@
 package com.squad.squad.repository;
 import com.squad.squad.domain.Event;
+import com.squad.squad.domain.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
@@ -20,8 +21,13 @@ public class EventRepository {
         return em.find(Event.class, id);
     }
 
-    public List<Event> getEventsOfOrganiser(Long id) {
-        return em.createQuery("SELECT e FROM Event e WHERE e.organiser.id = id", Event.class).getResultList();
+    public List<Event> getEventsOfOrganiser(User org) {
+        List<Event> events = em.createQuery("SELECT e FROM Event e WHERE e.organiser = :org", Event.class)
+                .setParameter("org", org)
+                .getResultList();
+        System.out.println("here ");
+        System.out.println(events);
+                return events;
     }
     public List<Event> getAllEvents() {
          return em.createQuery("SELECT e FROM Event e", Event.class).getResultList();

@@ -14,10 +14,9 @@ public class Ticket {
 
     private Integer availableQuantity;
 
-
     @Enumerated(EnumType.STRING)
     private TicketType ticketType;
-
+  
     @ManyToOne
     private Event event;
 
@@ -96,5 +95,4 @@ public class Ticket {
         Ticket ticket = (Ticket) o;
         return Double.compare(ticket.price, price) == 0 && availableQuantity == ticket.availableQuantity && Objects.equals(id, ticket.id) && ticketType == ticket.ticketType && Objects.equals(event, ticket.event);
     }
-
 }

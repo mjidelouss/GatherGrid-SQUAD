@@ -113,7 +113,6 @@ public class Event {
                 ", place='" + place + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
-                ", tickets = "+tickets+
                 '}';
     }
 }
