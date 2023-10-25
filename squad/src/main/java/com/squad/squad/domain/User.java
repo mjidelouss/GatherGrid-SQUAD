@@ -28,6 +28,15 @@ public class User {
         return id;
     }
 
+    public User(Long id, String username, String firstName, String lastName, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
     public User(String username, String firstName, String lastName, String email, String password) {
         this.username = username;
         this.firstName = firstName;
@@ -76,7 +85,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     @Override
@@ -101,7 +110,6 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
-
 
 }
 

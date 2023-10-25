@@ -1,5 +1,5 @@
 <footer style="background-color:#C3C6E2;">
-    <div class="container mt-5 py-5">
+    <div class="container py-5">
         <div class="d-flex flex-nowrap justify-content-center">
             <a href="#" style="color: #020202;"><i id="bx1" class='bx bxl-facebook fs-1 mx-2'></i></a>
             <a href="#" style="color: #020202;"><i id="bx2" class='bx bxl-twitter fs-1 mx-2' ></i></a>

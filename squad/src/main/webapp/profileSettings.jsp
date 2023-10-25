@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +25,7 @@
                 <div class="col-md-12 ps-0 ms-0">
                     <ul class="nav nav-pills flex-column flex-md-row my-4">
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);" style="background-color: #C3C6E2 ; color:#020202;"><i class='bx bx-user'></i> BEHJA Oumaima</a>
+                            <a class="nav-link active" href="javascript:void(0);" style="background-color: #C3C6E2 ; color:#020202;"><i class='bx bx-user'></i>${user.getFirstName()} ${user.getLastName()}</a>
                         </li>
                     </ul>
                 </div>
@@ -46,27 +48,32 @@
                     <h5 class="fw-bold" style="color: #C3C6E2">Changer Mes Informations Personnelles</h5>
                     <hr style="color: #C3C6E2">
                     <div class="card-body p-0">
-                        <form action="" class="">
+                        <form action="manage-info" method="post" class="">
+
+                            <c:if test="${not empty message}">
+                                <h3>${message}</h3>
+                            </c:if>
+
                             <div class="row">
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="lastname" class="form-label text-white">Nom</label>
-                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" id="lastname" name="lastname" value=""/>
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="firstname" class="form-label text-white">Prénom</label>
-                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" name="firstname" id="firstname" value=""/>
+                                    <label for="lastname" class="form-label text-white">Nom d'utilisateur</label>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" id="username" name="username" value="${user.getUsername()}"/>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="email" class="form-label text-white">Adresse Mail</label>
-                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="email" id="email" name="email" value=""/>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="email" id="email" name="email" value="${user.getEmail()}"/>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label text-white" for="mobile">Mobile</label>
-                                    <input type="text" id="mobile" name="mobile" class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" value=""/>
+                                    <label for="firstname" class="form-label text-white">Prénom</label>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" name="firstname" id="firstname" value="${user.getFirstName()}"/>
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="lastname" class="form-label text-white">Nom</label>
+                                    <input class="form-control text-white border-white bg-transparent" style="box-shadow: none !important;" type="text" id="lastname" name="lastname" value="${user.getLastName()}"/>
                                 </div>
                             </div>
 
@@ -82,7 +89,10 @@
                     <h5 class="" style="color: #C3C6E2">Changer Mon Mot de Passe</h5>
                     <hr style="color: #C3C6E2">
                     <div class="card-body p-0">
-                        <form  action="">
+                        <form action="manage-password" method="post">
+                            <c:if test="${not empty messageP}">
+                                <h3>${messageP}</h3>
+                            </c:if>
                             <div class="row">
                                 <div class="mb-3 col-md-4 form-password-toggle">
                                     <label for="current_password" class="form-label text-white">Mot de passe actuel</label>
@@ -128,7 +138,7 @@
                                 </p>
                             </div>
                         </div>
-                        <form id="formAccountDeactivation" action=" ">
+                        <form id="formAccountDeactivation" action="delete-profile" method="post">
                             <div class="form-check mb-4">
                                 <input class="form-check-input bg-transparent" style="box-shadow: none !important;" type="checkbox" name="accountActivation" id="accountActivation" value="1"/>
                                 <label class="form-check-label text-white" for="accountActivation">

@@ -14,5 +14,6 @@ public class Main {
         //System.out.println(newEvent);
         //List<Event> events = eventService.searchEvents("Devox", null, null, null);
         //events.stream().forEach(event -> System.out.println(event));
+
     }
 }

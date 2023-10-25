@@ -15,10 +15,10 @@ public class Event {
     private String description;
     @ManyToOne
     private Category category;
-    @OneToMany
-    private List<Comment> comments;
     @ManyToOne
     private User organiser;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "event")
+    private List<Ticket> tickets;
 
     public Event() {
     }
@@ -32,7 +32,6 @@ public class Event {
         this.category = category;
         this.organiser = organiser;
     }
-
     public User getOrganiser() {
         return organiser;
     }
@@ -97,12 +96,12 @@ public class Event {
         this.category = category;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<Ticket> getTicket() {
+        return tickets;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setTicket(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     @Override
@@ -114,7 +113,7 @@ public class Event {
                 ", place='" + place + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
-                ", commentaires=" + comments +
+                ", tickets = "+tickets+
                 '}';
     }
 }
