@@ -32,7 +32,7 @@
             <ul class="navbar-nav ms-auto">
                 <% if (session.getAttribute("user") != null) { %>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="LogoutServlet">Logout</a>
+                    <a class="nav-link text-light" href="logout">Logout</a>
                 </li>
                 <a type="button" class="btn btn-outline-light ms-3 me-lg-3 me-md-3" href="manage-profile">>
             <%= ((User) session.getAttribute("user")).getFirstName() %>
@@ -40,7 +40,7 @@
                 <% } else { %>
                 <a type="button" class="btn btn-outline-light ms-3 me-lg-3 me-md-3" href="registration.jsp">Inscrire</a>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="hello-servlet">Connexion</a>
+                    <a class="nav-link text-light" href="login.jsp">Connexion</a>
                 </li>
                 <% } %>
             </ul>
