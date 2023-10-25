@@ -1,85 +1,53 @@
 package com.squad.squad.repository;
-
 import com.squad.squad.domain.Event;
 import com.squad.squad.domain.Ticket;
-import com.squad.squad.domain.enums.TicketType;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.util.List;
 
 public class TicketRepository {
-    private final EntityManagerFactory entityManagerFactory;
-
-    public  TicketRepository(){
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    private final EntityManager em;
+    public TicketRepository(EntityManager em){
+        this.em = em;
     }
-
-    public List<Ticket> findByTicketType(TicketType ticketType) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Ticket> tickets = entityManager.createQuery("SELECT t FROM Ticket t WHERE t.ticketType = :type", Ticket.class)
-                .setParameter("type", ticketType)
-                .getResultList();
-        entityManager.close();
-        return tickets;
-    }
-
 
     public void save(Ticket ticket){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(ticket);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        em.getTransaction().begin();
+        em.persist(ticket);
+        em.getTransaction().commit();
     }
 
     public Ticket findById(Long Id){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Ticket ticket = entityManager.find(Ticket.class, Id);
-        entityManager.close();
+        Ticket ticket = em.find(Ticket.class, Id);
         return ticket;
     }
 
+    public Long getTicketId(Long id) {
+        Ticket ticket = em.createQuery("SELECT t FROM Ticket t WHERE t.event.id = id", Ticket.class).getSingleResult();
+        return ticket.getId();
+    }
     public List<Ticket> findAll(){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Ticket> tickets = entityManager.createQuery("SELECT t FROM Ticket t", Ticket.class).getResultList();
-        entityManager.close();
+        List<Ticket> tickets = em.createQuery("SELECT t FROM Ticket t", Ticket.class).getResultList();
         return tickets;
     }
 
-    public void update(Ticket ticketUpdated, Long TicketId){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        Ticket ticket = findById(TicketId);
-        if (ticket != null){
-            ticket.setTicketType(ticketUpdated.getTicketType());
-            ticket.setAvailableQuantity(ticketUpdated.getAvailableQuantity());
-            ticket.setPrice(ticketUpdated.getPrice());
-            ticket.setEvent(ticketUpdated.getEvent());
-            entityManager.merge(ticket);
-        }
-        entityManager.getTransaction().commit();
-        entityManager.close();
+    public void update(Ticket ticketUpdated){
+            em.getTransaction().begin();
+            em.merge(ticketUpdated);
+            em.getTransaction().commit();
     }
 
     public void delete(Long ticketId){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         Ticket ticket = findById(ticketId);
         if (ticket != null){
-            entityManager.remove(ticket);
+            em.getTransaction().begin();
+            em.remove(ticket);
+            em.getTransaction().commit();
         }
-        entityManager.getTransaction().commit();
-        entityManager.close();
     }
 
     public List<Ticket> findByEvent(Event event){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Ticket> tickets = entityManager.createQuery("SELECT t FROM Ticket t where t.event = :event ", Ticket.class)
-                .setParameter("event", event)
+        return em.createQuery("SELECT t FROM Ticket t where t.event = event ", Ticket.class)
                 .getResultList();
-        entityManager.close();
-        return tickets;
     }
 }
