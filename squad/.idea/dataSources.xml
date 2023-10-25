@@ -2,6 +2,13 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
 <<<<<<< HEAD
+    <data-source source="LOCAL" name="gatherGrid@localhost" uuid="fe78012b-8687-4655-9d0f-3a2c62650a6f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/gatherGrid</jdbc-url>
+=======
+<<<<<<< HEAD
     <data-source source="LOCAL" name="ggsquad@localhost" uuid="dc0162a9-807b-4cac-b299-fd84ec166245">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -13,6 +20,7 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/gathergrid</jdbc-url>
+>>>>>>> main
 >>>>>>> main
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>

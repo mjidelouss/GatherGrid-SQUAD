@@ -10,7 +10,7 @@
                 <p class="card-text d-flex align-items-center mb-3" style="color: white"> <i class="bi bi-geo-alt-fill me-2"></i> <span>Casablanca</span></p>
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="card-text d-flex my-auto" style="color: white"> <i class="bi bi-people-fill me-2"></i><span>127 Inscrits</span></p>
-                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> S'Inscrire</a>
+                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> Reserver</a>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <p class="card-text d-flex align-items-center mb-3" style="color: white"> <i class="bi bi-geo-alt-fill me-2"></i> <span>Rabat</span></p>
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="card-text d-flex my-auto" style="color: white"> <i class="bi bi-people-fill me-2"></i><span>17 Inscrits</span></p>
-                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> S'Inscrire</a>
+                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> Reserver</a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <p class="card-text d-flex align-items-center mb-3" style="color: white"> <i class="bi bi-geo-alt-fill me-2"></i> <span>Tanger</span></p>
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="card-text d-flex my-auto" style="color: white"> <i class="bi bi-people-fill me-2"></i><span>122 Inscrits</span></p>
-                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> S'Inscrire</a>
+                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> Reserver</a>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 <p class="card-text d-flex align-items-center mb-3" style="color: white"> <i class="bi bi-geo-alt-fill me-2"></i> <span>Marrakech</span></p>
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="card-text d-flex my-auto" style="color: white"> <i class="bi bi-people-fill me-2"></i><span>300 Inscrits</span></p>
-                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> S'Inscrire</a>
+                    <a href="#" class="btn btn-success border-0" style="color: #2f3349 !important; background-color: #C3C6E2 !important;"> Reserver</a>
                 </div>
             </div>
         </div>
