@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "eventCardsServlet", value = "/eventcard")
+@WebServlet(name = "eventCardsServlet", value = "/eventCardServlet", loadOnStartup = 1)
 public class EventCardServlet extends HttpServlet {
     private EntityManager em = EntityManagerUtil.getEntityManager();
     private EventRepository eventRepository = new EventRepository(em);
@@ -31,7 +31,7 @@ public class EventCardServlet extends HttpServlet {
         List<Event> events = eventService.getAllEvents();
         request.setAttribute("events", events);
         System.out.println("made cond");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("eventsPage.jsp").forward(request, response);
     }
 
 }
