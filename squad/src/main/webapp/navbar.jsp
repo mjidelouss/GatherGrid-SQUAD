@@ -14,14 +14,16 @@
                     <a class="nav-link text-light me-5 text-bold" href="about.jsp">A propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light me-5" href="eventsPage.jsp">Evenements</a>
+                    <a class="nav-link text-light me-5" href="eventCardServlet">Evenements</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light me-5" href="contact.jsp">Contact</a>
                 </li>
+                <% if (session.getAttribute("user") != null) { %>
                 <li class="nav-item">
                     <a class="nav-link text-light me-5" href="myTicket.jsp">Mes Tickets</a>
                 </li>
+                <% } %>
             </ul>
 <%--            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
